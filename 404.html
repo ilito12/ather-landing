@@ -39,7 +39,8 @@
     const parts = path.split('/').filter(Boolean);
     const username = parts[parts.length - 1] || '';
 
-    if (username && username !== 'u') {
+    // Выполняем deep-link только если URL содержит /u/<username>
+    if (username && username !== 'u' && path.includes('/u/')) {
       document.getElementById('msg').textContent = 'Открываем профиль @' + username + '...';
       const deepLink = 'ather://profile/' + username;
       setTimeout(() => {
